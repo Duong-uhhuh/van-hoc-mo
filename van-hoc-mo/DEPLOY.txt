@@ -1,0 +1,13 @@
+HUONG DAN DUA VAN HOC MO LEN MANG
+
+Can co tai khoan GitHub va repository chua toan bo thu muc du an nay.
+
+1. Push code len nhanh main cua repository GitHub.
+2. Trong repository, vao Settings > Pages va chon GitHub Actions.
+3. Workflow .github/workflows/pages.yml se tu dong deploy noi dung trong van-hoc-mo.
+4. Dang ky duongchiyeuminhanh.com neu ten mien con trong. Cai dat DNS theo cac ban ghi GitHub hien thi trong Settings > Pages.
+5. Sau khi DNS cap nhat, bat HTTPS trong Settings > Pages.
+
+Trang chua duoc publish tu workspace nay. Can repository GitHub, quyen deploy va ten mien da dang ky de co the truy cap bang dia chi cong khai.
+
+Luu y: day la prototype frontend. Tai khoan va tien do hoc tap luu trong localStorage cua tung trinh duyet; du lieu khong dong bo giua cac may.
