@@ -1,0 +1,10 @@
+HUONG DAN DEPLOY VAN HOC MO
+
+1. Tao project Supabase va chay van-hoc-mo/cloud-schema.sql theo huong dan trong van-hoc-mo/SUPABASE_SETUP.md.
+2. Dien Project URL va Publishable key vao van-hoc-mo/supabase-config.js.
+3. Push ca repository len nhanh main cua GitHub.
+4. Trong repository GitHub, vao Settings > Pages va chon GitHub Actions lam nguon.
+5. Mo Actions, doi workflow Deploy Van Hoc Mo to GitHub Pages chay xong, roi xem URL trong Settings > Pages.
+
+Frontend duoc host tren GitHub Pages; Supabase cung cap xac thuc va database dung chung.
+Khong dua secret key hoac service_role key vao frontend.
