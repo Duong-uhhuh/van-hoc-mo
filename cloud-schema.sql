@@ -10,6 +10,23 @@ create table if not exists public.profiles (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.literary_works (
+  id text primary key,
+  title text not null,
+  author text not null,
+  genre text not null,
+  period text not null,
+  tags text[] not null default '{}',
+  level text not null,
+  mark text not null,
+  cover text not null,
+  description text not null,
+  reading text not null,
+  intro text not null,
+  questions jsonb not null default '[]'::jsonb check (jsonb_typeof(questions) = 'array'),
+  updated_at timestamptz not null default now()
+);
+
 create table if not exists public.learning_progress (
   user_id uuid not null references public.profiles (id) on delete cascade,
   work_id text not null,
@@ -38,6 +55,7 @@ create index if not exists learning_sessions_user_created_idx
   on public.learning_sessions (user_id, created_at desc);
 
 alter table public.profiles enable row level security;
+alter table public.literary_works enable row level security;
 alter table public.learning_progress enable row level security;
 alter table public.learning_sessions enable row level security;
 alter table public.teacher_access_requests enable row level security;
@@ -90,6 +108,11 @@ create policy "Profiles readable by owner or teacher"
   on public.profiles for select to authenticated
   using (id = (select auth.uid()) or (select public.user_is_teacher()));
 
+drop policy if exists "Authenticated users read literary works" on public.literary_works;
+create policy "Authenticated users read literary works"
+  on public.literary_works for select to authenticated
+  using (true);
+
 drop policy if exists "Progress readable by owner or teacher" on public.learning_progress;
 create policy "Progress readable by owner or teacher"
   on public.learning_progress for select to authenticated
@@ -122,11 +145,13 @@ create policy "Users read own teacher access request"
   using (user_id = (select auth.uid()));
 
 revoke all on table public.profiles from anon, authenticated;
+revoke all on table public.literary_works from anon, authenticated;
 revoke all on table public.learning_progress from anon, authenticated;
 revoke all on table public.learning_sessions from anon, authenticated;
 revoke all on table public.teacher_access_requests from anon, authenticated;
 
 grant select on table public.profiles to authenticated;
+grant select on table public.literary_works to authenticated;
 grant select, insert, update on table public.learning_progress to authenticated;
 grant select, insert on table public.learning_sessions to authenticated;
 grant select on table public.teacher_access_requests to authenticated;

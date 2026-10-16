@@ -7,6 +7,9 @@
 1. Tạo project tại [supabase.com](https://supabase.com/).
 2. Mở **SQL Editor → New query**.
 3. Sao chép toàn bộ `cloud-schema.sql`, chạy bằng **Run**.
+4. Mở query mới, chạy toàn bộ `literary-works-seed.sql` để nạp sáu tác phẩm ban đầu.
+
+Nội dung tác phẩm, phần đọc, giới thiệu, thẻ chủ đề và câu hỏi trắc nghiệm được tải từ bảng `literary_works`. Tài khoản đã đăng nhập có quyền đọc; chỉ quản trị viên Supabase chỉnh nội dung trong Table Editor hoặc SQL Editor. File seed dùng `ON CONFLICT DO NOTHING`, nên chạy lại không ghi đè nội dung tác phẩm đã sửa.
 
 ## 2. Đăng ký học sinh và duyệt giáo viên
 
